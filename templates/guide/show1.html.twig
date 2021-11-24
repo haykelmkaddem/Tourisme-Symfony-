@@ -1,0 +1,143 @@
+{% extends 'baseSyrine.html.twig' %}
+
+{% block title %}Guide{% endblock %}
+{% block style %}
+    <style>
+        .bg-image{
+            position: relative;
+            background-image: url("{{ asset('uploads/') }}{{ guide.image }}");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+
+        }
+        .ratingtop .rating div.star-full {
+            font-size: small !important;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-3 d-none d-lg-block bg-light">
+                                <img src="{{ asset('uploads/') }}{{ guide.image }}" alt="Admin" class="rounded-circle" style="width: 80%;margin-left: 10%;margin-top: 2rem;">
+                                <a href="/reservation/guide/new/{{ guide.id }}" class="btn btn-primary w-50" style="margin-left: 25%">Reserver</a>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h3>
+                                            {{ guide.nom }}
+                                            {{ guide.prenom }}
+                                            <br>
+                                            <br>
+                                        </h3>
+                                    </div>
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <b>
+                                                    A propos:
+                                                </b>
+                                            </td>
+                                            <td>
+                                                {{ guide.descr }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>
+                                                    Disponible le:
+                                                </b>
+                                            </td>
+                                        {% for dis in disp %}
+                                            <td>
+                                                - {{ dis }} <br>
+                                            </td>
+                                        {% endfor %}
+
+
+                                        </tr>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-5 p-5">
+                                <div class="">
+                                    {% for avisNs in avisN|slice(0, 5) %}
+
+
+                                        <div class="w-25 float-left">
+                                            {{ avisNs.IdUtilisateur.nom }}
+                                        </div>
+                                        <div class="w-75 float-left">
+                                            <div class="ratingtop">
+                                                {{ avisNs.note|rating }}
+                                            </div>
+                                        </div>
+                                        <div class="w-100">
+                                            {{ avisNs.commentaire }}
+                                        </div>
+
+                                    {% endfor %}
+                                </div>
+                                <div>
+                                    <h3>
+                                        Avis
+                                    </h3>
+                                    {{ form_start(form) }}
+
+                                    <table class="text-center w-100">
+
+                                        <tr>
+                                            <td>
+                                                {{ form_row(form.note) }}
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    {{  form_row(form.commentaire) }}
+                                    <br>
+
+                                    <button class="btn btn-warning">{{ button_label|default('Save') }}</button>
+
+                                    {{ form_end(form) }}
+
+
+                                    <table class="text-center w-100">
+                                        <tr>
+                                            <td><a href="{{ path('like_new_g', {'id': guide.id }) }}" class="text-primary">
+                                                    <i class="fas fa-thumbs-up"></i>{{ likes }}
+                                                </a></td>
+                                            <td><a href="{{ path('dislike_new_g', {'id': guide.id }) }}" class="text-primary">
+                                                    <i class="fas fa-thumbs-down"></i>{{ dislikes }}
+                                                </a></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

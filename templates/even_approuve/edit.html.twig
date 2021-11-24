@@ -1,0 +1,13 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Edit EvenApprouve{% endblock %}
+
+{% block body %}
+    <h1>Edit EvenApprouve</h1>
+
+    {{ include('even_approuve/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <br><br>
+
+    {{ include('even_approuve/_delete_form.html.twig') }}
+{% endblock %}

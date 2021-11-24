@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+
+        {% for maison in maisons %}
+            <div class="col-md-4">
+                <a href="{{ path('maison_show', { 'id':maison.id }) }}" >
+
+                    <div class="card" style="width: 20rem; height: 21rem; margin-bottom: 20px">
+                        <img src="{{ asset('uploads/' ~ maison.image1) }}" class="card-img-top" height="220" alt="#">
+                        <div class="card-body">
+
+                            <h4 class="card-title">{{ maison.prix }} DT par {{ maison.nsm }}</h4>
+                            <h6 class="card-title">{{ maison.adresse }}</h6>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        {% else %}
+
+            no records found
+
+        {% endfor %}
+
+    </div>
+</div>

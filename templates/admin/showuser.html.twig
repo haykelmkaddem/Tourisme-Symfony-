@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Disponibilite{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Infos de  {{ utilisateur.nom }} {{ utilisateur.prenom }}
+                <div class="float-right">
+                    <table>
+                        <tr>
+                            <td><a href="{{ path('dashboard_utilisateur_edit', {'id': utilisateur.id}) }}">modifier <i class="fas fa-edit"></i></a></td>
+                            <td> {{ include('admin/_delete_form.html.twig') }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </h6>
+        </div>
+        <div class="card-body">
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ utilisateur.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ utilisateur.nom }}</td>
+        </tr>
+        <tr>
+            <th>Prénom</th>
+            <td>{{ utilisateur.prenom }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ utilisateur.email }}</td>
+        </tr>
+        <tr>
+            <th>Numéro de telephone</th>
+            <td>{{ utilisateur.numtel }}</td>
+        </tr>
+        <tr>
+            <th>Roles</th>
+            <td>
+                {% for role in utilisateur.roles  %}
+                {% if role == "ROLE_ADMIN" %}
+                    Administrateur,
+                    {% elseif role == "ROLE_GUIDE" %}
+                        Guide touristique,
+                    {% elseif role == "ROLE_USER" %}
+                        Membre
+
+                {% endif %}
+                {% endfor %}
+
+            </td>
+        </tr>
+        <tr>
+            <th>Date de naissance</th>
+            <td>{{ utilisateur.datenaissance ? utilisateur.datenaissance|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Pays</th>
+            <td>{{ utilisateur.pays }}</td>
+        </tr>
+        <tr>
+            <th>Etat</th>
+            <td>{{ utilisateur.isVerified ? 'Verifié' : 'Non verifié' }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('utilisateur_index') }}">back to list</a>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

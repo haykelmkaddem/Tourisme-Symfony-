@@ -1,0 +1,47 @@
+{% extends 'base1Front.html.twig' %}
+
+{% block title %}EvenApprouve index{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="tm-page-wrap mx-auto">
+    <div class="tm-container-outer" id="tm-section-2">
+        {% set A = 0 %}
+{% for even_approuve in even_approuves %}
+
+
+
+    {% if A % 2 == 0 %}
+        <section class="tm-slideshow-section">
+    {% else %}
+        <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse" style="margin-right: 60px;">
+    {% endif %}
+
+            <div class="tm-slideshow">
+                <img src="{{ asset('uploads/' ~ even_approuve.image_filename) }}" alt="Image" style="height: 400px; width: 680px;">
+            </div>
+            <div class="tm-slideshow-description tm-bg-primary">
+                <h2 class="">{{ even_approuve.titre_even }}</h2>
+                <h3>Date de l'événement</h3>
+                <h5>{{ even_approuve.date_debut_even }}</h5>
+                <a href="{{ path('detail', {'id':even_approuve.id}) }}" class="text-uppercase tm-btn tm-btn-white tm-btn-white-primary">Continue Reading</a>
+            </div>
+        </section>
+
+    {% set A = A+1  %}
+
+{% endfor %}
+
+    </div>
+</div>
+
+
+
+
+
+
+
+    {% endblock %}

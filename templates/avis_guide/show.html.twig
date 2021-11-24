@@ -1,0 +1,35 @@
+{% extends 'backSyrine.html.twig' %}
+
+{% block title %}AvisGuide{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Avis</h6>
+        </div>
+        <div class="card-body">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ avis_guide.id }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ avis_guide.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('avis_guide_index') }}">back to list</a>
+
+    <a href="{{ path('avis_guide_edit', {'id': avis_guide.id}) }}">edit</a>
+
+    {{ include('avis_guide/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

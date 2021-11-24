@@ -1,0 +1,13 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Edit Artiste{% endblock %}
+
+{% block body %}
+    <h1>Modifier artiste</h1>
+    <br><br><br><br>
+    {{ include('artiste/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+    {{ include('artiste/_delete_form.html.twig') }}
+    <br><br>
+{% endblock %}

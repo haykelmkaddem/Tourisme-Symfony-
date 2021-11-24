@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+<select name="maison">
+    {% for maison in maisonss %}
+        <option value={{ maison.id }}>{{ maison.adresse }}</option>
+    {% endfor %}
+</select>
+<select name="proprietaire">
+    {% for proprietaire in proprietaires %}
+        <option value={{ proprietaire.id }}>{{ proprietaire.nom }}</option>
+    {% endfor %}
+</select>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,103 @@
+{% extends 'baseAziz.html.twig' %}
+
+{% block title %}Maison{% endblock %}
+
+{% block body %}
+    <head>
+        <link rel="stylesheet" href="{{ asset('assets/css/styleTable.css') }}" />
+        <style>
+            td a {
+                display: block;
+                text-decoration: none;
+            }
+            td a,
+            td a:focus,
+            td a:hover,
+            td a:active {text-decoration: none;}
+        </style>
+    </head>
+    <div class="container" style="margin-bottom: -40px">
+        <div class="right" style="margin-top: 10px; margin-left: 60px">
+            <a href="{{ path('maison_index') }}"> <button class="btn btn-light" type="submit" style="width: auto"><i class="fa fa-arrow-left" aria-hidden="true"></i>RETOUR</button></a>
+        </div>
+    </div>
+    <h1><span class="blue">&lt;</span>Détails<span class="blue">&gt;</span>
+        <span class="yellow">MAISON</span></h1>
+    <h2>Votre vacance <a href="{{ path('maison_index') }}" target="_blank">NOTRE DEVOIR</a></h2>
+
+    <table class="container" style="margin-bottom: 30px">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td colspan="3">{{ maison.id }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td colspan="3">{{ maison.prix }}</td>
+            </tr>
+            <tr>
+                <th>Nsm</th>
+                <td colspan="3">{{ maison.nsm }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td colspan="3">{{ maison.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Check_in</th>
+                <td colspan="3">{{ maison.checkIn }}</td>
+            </tr>
+            <tr>
+                <th>Check_out</th>
+                <td colspan="3">{{ maison.checkOut }}</td>
+            </tr>
+            <tr>
+                <th>Piscine</th>
+                <td colspan="3">{{ maison.piscine }}</td>
+            </tr>
+            <tr>
+                <th>Bedrooms</th>
+                <td colspan="3">{{ maison.Bedrooms }}</td>
+            </tr>
+            <tr>
+                <th>Bathrooms</th>
+                <td colspan="3">{{ maison.bathrooms }}</td>
+            </tr>
+            <tr>
+                <th>Maxppl</th>
+                <td colspan="3">{{ maison.maxppl }}</td>
+            </tr>
+            <tr>
+                <th>Smoke</th>
+                <td colspan="3">{{ maison.smoke }}</td>
+            </tr>
+            <tr>
+                <th>Pet</th>
+                <td colspan="3">{{ maison.pet }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td colspan="3">{{ maison.description }}</td>
+            </tr>
+            <tr>
+                <th>Date d'ajout</th>
+                <td colspan="3">{{ maison.dateAjout ? maison.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Actions</th>
+                {% if maison.user == app.user %}
+
+                <td style="text-align: center"><a href="{{ path('maison_edit', {'id': maison.id}) }}">MODIFIER</a></td>
+                {% endif %}
+
+                <td style="text-align: center"><a href="{{ path('maison_show_pdf', {'id': maison.id}) }}">IMPRIMER</a></td>
+                {% if maison.user == app.user %}
+                <td style="text-align: center">{{ include('maison/_delete_form.html.twig') }}</td>
+                {% endif %}
+
+            </tr>
+        </tbody>
+    </table>
+    <img src="{{qr_code_path('BIOSTravel.tn') }}"/>
+{% endblock %}
+

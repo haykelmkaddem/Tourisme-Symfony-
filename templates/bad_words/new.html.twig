@@ -1,0 +1,11 @@
+{% extends 'backSyrine.html.twig' %}
+
+{% block title %}New BadWords{% endblock %}
+
+{% block body %}
+    <h1>Create new BadWords</h1>
+
+    {{ include('bad_words/_form.html.twig') }}
+
+    <a href="{{ path('bad_words_index') }}">back to list</a>
+{% endblock %}

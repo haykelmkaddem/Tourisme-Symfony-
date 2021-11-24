@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prop{% endblock %}
+
+{% block body %}
+    <style>
+        #image {
+            min-height:500px;
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+
+
+        .modal-body {
+            position:relative;
+            padding:0px;
+            min-height:400px;
+            background:#ccc;
+        }
+
+
+
+
+        .close {
+            position:absolute;
+            right:-30px;
+            top:0;
+            z-index:999;
+            font-size:2rem;
+            font-weight: normal;
+            color:#fff;
+            opacity:1;
+        }
+
+    </style>
+    <div class="container">
+        <div class="container-fluid">
+            <div class="card shadow mb-4 pb-5">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{{ prop.idUser.nom }} {{ prop.idUser.prenom }}
+                    <div class="float-right">
+                        CIN:
+                        {{ prop.cin }}
+                    </div>
+                    </h6>
+                </div>
+                <div class="card-body">
+        <h1></h1>
+                    <a class="btn btn-primary" href="{{ path('dashboard_prop') }}"><i class="fas fa-arrow-left"></i></a>
+
+                    <a class="btn btn-warning" style="width: 70px;"  href="{{ path('dashboard_utilisateur_affectprop', {'id': prop.IdUser.id}) }}"><i class="fas fa-cog"></i></a>
+                    <hr>
+                    <br>
+        <div class="gallery">
+            <img src="{{ asset('uploads/') }}{{ prop.imgCinFront }}" alt="" style="width: 30%; height: 150px; margin-left:4%;  border-radius:5px;" data-toggle="modal" data-bigimage="{{ asset('uploads/') }}{{ prop.imgCinFront }}" data-target="#myModal" class="img-fluid ">
+            <img src="{{ asset('uploads/') }}{{ prop.imgCinBack }}" alt="" style="width: 30%; height: 150px; border-radius:5px;" data-toggle="modal" data-bigimage="{{ asset('uploads/') }}{{ prop.imgCinBack }}"  data-target="#myModal" class="img-fluid">
+            <img src="{{ asset('uploads/') }}{{ prop.verifPhoto }}" alt="" style="width: 30%; height: 150px; margin-right:4%;  border-radius:5px;" data-toggle="modal" data-bigimage="{{ asset('uploads/') }}{{ prop.verifPhoto }}"  data-target="#myModal" class="img-fluid ">
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+
+                    <div class="modal-body">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        <img src="//media.tenor.com/images/556e9ff845b7dd0c62dcdbbb00babb4b/tenor.gif" alt="" id="image" class="img-fluid">
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!---->
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('front/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.dropotron.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.scrolly.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/jquery.scrollex.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/browser.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/breakpoints.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/util.js') }}"></script>
+    <script src="{{ asset('front/assets/js/main.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+
+// Gets the video src from the data-src on each button
+            var $imageSrc;
+            $('.gallery img').click(function() {
+                $imageSrc = $(this).data('bigimage');
+            });
+            console.log($imageSrc);
+
+
+
+// when the modal is opened autoplay it
+            $('#myModal').on('shown.bs.modal', function (e) {
+
+// set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+
+                $("#image").attr('src', $imageSrc  );
+            })
+
+
+// reset the modal image
+            $('#myModal').on('hide.bs.modal', function (e) {
+                // a poor man's stop video
+                $("#image").attr('src','');
+            })
+
+
+
+
+
+
+// document ready
+        });
+
+    </script>
+
+{% endblock %}

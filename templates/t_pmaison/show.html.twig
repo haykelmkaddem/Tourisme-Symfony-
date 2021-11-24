@@ -1,0 +1,32 @@
+{% extends 'baseBACK.html.twig' %}
+
+{% block title %}TPmaison{% endblock %}
+
+{% block body %}
+    <div class="right" style="margin-top: 10px; margin-left: 60px">
+        <a href="{{ path('t_pmaison_index') }}"> <button class="btn btn-light" type="submit" style="width: auto"><i class="fa fa-arrow-left" aria-hidden="true"></i>RETOUR</button></a>
+    </div>
+    <h1>Types de location</h1>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ t_pmaison.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ t_pmaison.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+
+    <a href="{{ path('t_pmaison_edit', {'id': t_pmaison.id}) }}">edit</a>
+</div>
+
+    {{ include('t_pmaison/_delete_form.html.twig') }}
+{% endblock %}

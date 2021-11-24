@@ -1,0 +1,63 @@
+{% extends 'base1Front.html.twig' %}
+{% block body %}
+    <br><br><br><br><br><br><br><br>
+    <link rel="stylesheet" href="{{ asset('assets/css/evenDetailCss.css') }}">
+<div class="container">
+    <div class="card">
+        <h2>{{ even_approuve.titreEven }}</h2>
+        <p>Catégorie : {{ even_approuve.CategorieEven.titreCat }}</p>
+        <br>
+        <div class="desc">A propos l'événement : <br>{{even_approuve.descriptionEven}}</div>
+        <br><br>
+        <img src="{{ asset('uploads/' ~ even_approuve.imageFilename) }}" style="max-height: 10rem; ">
+        <br>
+        Date événement : {{ even_approuve.dateDebutEven|date("m/d/Y") }}<br>
+        Heure événement : {{ even_approuve.heureDebutEven|date("g:ia") }}
+        <br><br>
+        <table>
+            <tr>
+                <td>
+                    <button class="btn btn-outline-success">Participants : {{ even_pop.participants }}</button>
+                </td>
+                <td>
+                    <button class="btn btn-outline-warning">Peut-etre : {{ even_pop.peutEtre }}</button>
+                </td>
+                <td>
+                    <button class="btn btn-outline-danger">Je n'aime pas : {{ even_pop.no }}</button>
+                </td>
+            </tr>
+        </table>
+
+
+        <br><br>
+        <div class="actions">
+            <a href="{{ path('participant', {'id':even_approuve.id}) }}">
+                <button class="actions__like">Participant &nbsp; <i class="fas fa-heart"></i> </button>
+            </a>
+            <a href="{{ path('peutEtre', {'id':even_approuve.id}) }}">
+            <button class="actions__trade">Peut-etre &nbsp; <i class="fas fa-exchange-alt"></i> </button>
+            </a>
+            <a href="{{ path('no', {'id':even_approuve.id}) }}">
+            <button class="actions__cancel">J'aime pas &nbsp; <i class="fas fa-times"></i> </button>
+            </a>
+        </div>
+
+        <div class="">
+
+
+                <table class="text-center w-100 font-weight-bolder">
+                    <tr>
+                        <td><a href="{{ path('like_new_e', {'id': even_approuve.id }) }}" class="text-primary">
+                                <i class="fas fa-thumbs-up"></i>{{ likes }}
+                            </a></td>
+                        <td><a href="{{ path('dislike_new_e', {'id': even_approuve.id }) }}" class="text-primary">
+                                <i class="fas fa-thumbs-down"></i>{{ dislikes }}
+                            </a></td>
+                    </tr>
+                </table>
+    </div>
+
+</div>
+    </div>
+    </div>
+{% endblock body %}

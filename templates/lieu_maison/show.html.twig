@@ -1,0 +1,31 @@
+{% extends 'baseBACK.html.twig' %}
+
+{% block title %}LieuMaison{% endblock %}
+
+{% block body %}
+    <div class="right" style="margin-top: 10px; margin-left: 60px">
+        <a href="{{ path('lieu_maison_index') }}"> <button class="btn btn-light" type="submit" style="width: auto"><i class="fa fa-arrow-left" aria-hidden="true"></i>RETOUR</button></a>
+    </div>
+    <h1>LieuMaison</h1>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lieu_maison.id }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ lieu_maison.lieu }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+
+    <a href="{{ path('lieu_maison_edit', {'id': lieu_maison.id}) }}">edit</a>
+</div>
+    {{ include('lieu_maison/_delete_form.html.twig') }}
+{% endblock %}

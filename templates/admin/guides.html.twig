@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Guide index{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Liste des guides</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Cin</th>
+                            <th>Email</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Cin</th>
+                            <th>Email</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>actions</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for guide in guides %}
+                            <tr>
+                                <td>{{ guide.id }}</td>
+                                <td>{{ guide.cin }}</td>
+                                <td>{{ guide.idUser.email }}</td>
+                                <td>{{ guide.idUser.nom }}</td>
+                                <td>{{ guide.idUser.prenom }}</td>
+                                <td>
+                                    <a class="btn text-alert" title="Afficher la demande" href="{{ path('dashboard_guide_show', {'id': guide.id}) }}"><i class="fas fa-eye"></i></a>
+                                    <a class="btn text-alert" title="Gerer la demande" href="{{ path('dashboard_utilisateur_affectguide', {'id': guide.IdUser.id}) }}"><i class="fas fa-cog"></i></a>
+                                    {{ include('guide/_delete_form.html.twig') }}
+
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

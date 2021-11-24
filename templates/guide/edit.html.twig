@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Guide{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Modifier ce guide</h6>
+        </div>
+        <div class="card-body">
+
+    {{ include('guide/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('guide_index') }}">back to list</a>
+            {{ form_start(form) }}
+            {{ form_row(form.cin) }}
+            {{ form_row(form.imgCinFront, {
+                label: 'Face recto de votre Cin'
+            }) }}
+            {{ form_row(form.imgCinBack, {
+                label: 'Face verso de votre Cin'
+            }) }}
+            {{ form_row(form.cvFile, {
+                label: 'Votre cv'
+            }) }}
+            {{ form_row(form.verifPhoto, {
+                label: 'Votre Photo'
+            }) }}
+            {{ form_row(form.etat) }}
+            {{ form_row(form.idUser, { label: ' ','attr': {'class': 'invisible'} }) }}
+
+
+            <button type="submit" class="btn btn-warning">Envoyer demande</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

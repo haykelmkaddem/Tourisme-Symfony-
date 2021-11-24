@@ -1,0 +1,89 @@
+{% extends 'baseBACK.html.twig' %}
+
+{% block title %}Maison{% endblock %}
+
+{% block body %}
+    <div class="right" style="margin-top: 10px; margin-left: 60px">
+        <a href="{{ path('maison_index_back') }}"> <button class="btn btn-light" type="submit" style="width: auto"><i class="fa fa-arrow-left" aria-hidden="true"></i>RETOUR</button></a>
+    </div>
+    <h1>Maison</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Détails</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ maison.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prix</th>
+                        <td>{{ maison.prix }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nsm</th>
+                        <td>{{ maison.nsm }}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <td>{{ maison.adresse }}</td>
+                    </tr>
+                    <tr>
+                        <th>Check_in</th>
+                        <td>{{ maison.checkIn }}</td>
+                    </tr>
+                    <tr>
+                        <th>Check_out</th>
+                        <td>{{ maison.checkOut }}</td>
+                    </tr>
+                    <tr>
+                        <th>Piscine</th>
+                        <td>{{ maison.piscine }}</td>
+                    </tr>
+                    <tr>
+                        <th>Bedrooms</th>
+                        <td>{{ maison.Bedrooms }}</td>
+                    </tr>
+                    <tr>
+                        <th>Bathrooms</th>
+                        <td>{{ maison.bathrooms }}</td>
+                    </tr>
+                    <tr>
+                        <th>Maxppl</th>
+                        <td>{{ maison.maxppl }}</td>
+                    </tr>
+                    <tr>
+                        <th>Smoke</th>
+                        <td>{{ maison.smoke }}</td>
+                    </tr>
+                    <tr>
+                        <th>Pet</th>
+                        <td>{{ maison.pet }}</td>
+                    </tr>            <tr>
+                        <td><img src="{{ asset('uploads/' ~ maison.image1) }}" height="220" alt="#"></td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ maison.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>DateAjout</th>
+                        <td>{{ maison.dateAjout ? maison.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <a href="{{ path('maison_show_pdf', {'id': maison.id}) }}">Imprimer</a>
+
+
+
+
+    {{ include('maison/_delete_form.html.twig') }}
+{% endblock %}

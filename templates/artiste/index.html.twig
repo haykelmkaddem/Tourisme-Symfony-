@@ -1,0 +1,70 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Artiste index{% endblock %}
+
+{% block body %}
+    <h1 style="margin-left: 10%;">Liste des artistes</h1>
+<br><br><br>
+
+
+
+
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>NomArtiste</th>
+                        <th>DescriptionArtiste</th>
+                        <th>Voir détails</th>
+                        <th>Modifier</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>NomArtiste</th>
+                        <th>DescriptionArtiste</th>
+                        <th>Voir détails</th>
+                        <th>Modifier</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for artiste in artistes %}
+                        <tr>
+
+                            <td>{{ artiste.nomArtiste }}</td>
+                            <td>{{ artiste.descriptionArtiste }}</td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <a href="{{ path('artiste_show', {'id': artiste.id}) }}"><i class="fas fa-eye" style="width: 40px; color: #ffffff;" ></i></a>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-success">
+                                    <a href="{{ path('artiste_edit', {'id': artiste.id}) }}"><i class="fas fa-edit" style="width: 40px; color: #ffffff;"></i></a>
+                                </button>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <br><br>
+{% endblock %}

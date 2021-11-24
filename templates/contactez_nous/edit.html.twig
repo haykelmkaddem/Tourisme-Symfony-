@@ -1,0 +1,13 @@
+{% extends 'baseSyrine.html.twig' %}
+
+{% block title %}Edit ContactezNous{% endblock %}
+
+{% block body %}
+    <h1>Edit ContactezNous</h1>
+
+    {{ include('contactez_nous/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('contactez_nous_index') }}">back to list</a>
+
+    {{ include('contactez_nous/_delete_form.html.twig') }}
+{% endblock %}

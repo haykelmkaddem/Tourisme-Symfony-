@@ -1,0 +1,13 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Edit EvenNonApprouve{% endblock %}
+
+{% block body %}
+    <h1>Edit EvenNonApprouve</h1>
+
+    {{ include('even_non_approuve/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('even_non_approuve_index') }}">back to list</a>
+
+    {{ include('even_non_approuve/_delete_form.html.twig') }}
+{% endblock %}

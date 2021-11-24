@@ -1,0 +1,147 @@
+{% extends 'baseAziz.html.twig' %}
+
+{% block title %}Maison index{% endblock %}
+
+{% block body %}
+    <head>
+        <meta charset="UTF-8" />
+        <!-- style CSS -->
+        <link rel="stylesheet" href="{{ asset('theme/css/style.css') }}" >
+        <style>
+            body {
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 300;
+                line-height: 1.42em;
+                color:#A7A1AE;
+                background-color:#1F2739;
+            }
+
+            .popUpUpdateClass{
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+            .popupContent{
+                background-color: #fefefe;
+                margin: 15% auto; /* 15% from the top and centered */
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%; /* Could be more or less, depending on screen size */
+            }
+            #sidebar{
+                height: 100vh;
+
+            }
+            .page-content{
+                margin-left: 25%;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="page-wrapper">
+        <nav id="sidebar" class="sidebar w-25 float-left pt-5 pl-2">
+
+            <div class="select_option">
+                <div class="select_option_list" style="width: 350px; margin-bottom: 2rem;">Lieux <i class="float-right fas fa-caret-down"></i></div>
+                {% for lieu in lieux  %}
+                    <div class="select_option_dropdown">
+                        <p><a href="{{ path('maisonLieu', {'id':lieu.id}) }}">{{ lieu.lieu }}</a></p>
+                    </div>
+                {% endfor %}
+
+                <br>
+
+                <!-- start: page -->
+
+            </div>
+        </nav>
+        <div class="page-content w-75">
+            <h1 style="font-weight: bold;
+                                font-size: 2.5em;
+                                text-align: center;
+                                color: #185875;
+                                margin-top: 30px;">List des Locations</h1>
+
+
+            <div id="all">
+                {% include 'maison/ajax.html.twig' %}
+            </div>
+
+        </div>
+
+
+
+
+        <script src="{{ asset('theme/js/jquery.js') }}"></script>
+        <script src="{{ asset('theme/js/jquery-1.12.1.min.js') }}"></script>
+        <!-- popper js -->
+        <script src="{{ asset('theme/js/popper.min.js') }}" ></script>
+        <!-- bootstrap js -->
+        <script src="{{ asset('theme/js/bootstrap.min.js') }}" ></script>
+        <!-- magnific popup js -->
+        <script src="{{ asset('theme/js/jquery.magnific-popup.js') }}" ></script>
+        <!-- carousel js -->
+        <script src="{{ asset('theme/js/owl.carousel.min.js') }}" ></script>
+        <script src="{{ asset('theme/js/jquery.nice-select.min.js') }}" ></script>
+        <!-- slick js -->
+        <script src="{{ asset('theme/js/slick.min.js') }}" ></script>
+        <script src="{{ asset('theme/js/jquery.counterup.min.js') }}" ></script>
+        <script src="{{ asset('theme/js/waypoints.min.js') }}" ></script>
+        <script src="{{ asset('theme/js/contact.js') }}" ></script>
+        <script src="{{ asset('theme/js/jquery.ajaxchimp.min.js') }}" ></script>
+        <script src="{{ asset('theme/js/jquery.form.js') }}" ></script>
+        <script src="{{ asset('theme/js/jquery.validate.min.js') }}" ></script>
+        <script src="{{ asset('theme/js/mail-script.js') }}" ></script>
+        <!-- custom js -->
+        <script src="{{ asset('theme/js/custom.js') }}" ></script>
+
+    </body>
+    <script>
+function required()
+        {
+            var empt = document.form1.min.value;
+            var empt1 = document.form1.max.value;
+            if (empt === "")
+            {
+                document.form1.min.value=0;
+                return false;
+            }
+            if (empt1 === "")
+            {
+                document.form1.max.value=99999;
+                return false;
+            }
+
+        }
+    </script>
+    <script src="{{ asset('theme/js/jquery-1.12.1.min.js') }}"></script>
+    <!-- popper js -->
+    <script src="{{ asset('theme/js/popper.min.js') }}" ></script>
+    <!-- bootstrap js -->
+    <script src="{{ asset('theme/js/bootstrap.min.js') }}" ></script>
+    <!-- magnific popup js -->
+    <script src="{{ asset('theme/js/jquery.magnific-popup.js') }}" ></script>
+    <!-- carousel js -->
+    <script src="{{ asset('theme/js/owl.carousel.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.nice-select.min.js') }}" ></script>
+    <!-- slick js -->
+    <script src="{{ asset('theme/js/slick.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.counterup.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/waypoints.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/contact.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.ajaxchimp.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.form.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.validate.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/mail-script.js') }}" ></script>
+    <!-- custom js -->
+    <script src="{{ asset('theme/js/custom.js') }}" ></script>
+    </body>
+{% endblock %}
+

@@ -1,0 +1,225 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}New Disponibilite{% endblock %}
+
+
+ {% block style %}
+     <style>
+         body.homepage #header {
+             height: 50px;
+             min-height: 50px;
+         }
+     </style>
+ {% endblock %}
+{% block header %}
+    <!-- Header -->
+    <div id="header">
+
+        <!-- Inner -->
+        <div class="inner">
+            <header>
+
+            </header>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="/">Acceuil</a></li>
+                <li><a href="/guides">Guides</a></li>
+                <li><a href="left-sidebar.html">Hébergements</a></li>
+                <li><a href="right-sidebar.html">Evenements</a></li>
+
+
+                {% if is_granted('ROLE_USER') %}
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/utilisateur/{{ app.user.id }}">Profile</a></li>
+                            {% if is_granted('ROLE_GUIDE') %}
+                                <li><a class="dropdown-item" href="/disponibilite">Disponibilité</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="/guide/new">Devenir Guide</a></li>
+                            {% endif %}
+
+                            <li><a class="dropdown-item" href="#">Devenir Prop Maison</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="/login">Login <i class="fas fa-sign-in-alt"></i></a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <div class="main-body mt-5 mb-5">
+
+            <!-- Breadcrumb -->
+
+            <!-- /Breadcrumb -->
+
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="{{ asset('uploads/') }}{{ app.user.image }}" alt="Admin" class="rounded-circle" width="150">
+                                <div class="mt-3 ">
+                                    <h4>{{ app.user.nom }} {{ app.user.prenom }}</h4>
+                                    <p class="text-secondary mb-1 text-center">
+                                        {% for role in app.user.roles  %}
+                                            {% if role == "ROLE_ADMIN" %}
+                                                Administrateur,
+                                            {% elseif role == "ROLE_GUIDE" %}
+                                                Guide touristique,
+                                            {% elseif role == "ROLE_USER" %}
+                                                Membre
+
+                                            {% endif %}
+                                        {% endfor %}</p>
+                                    <p class="text-muted font-size-sm text-center">{{ app.user.pays }}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h1 class="text-primary">
+                                Disponible aussi le:
+                            </h1>
+                        </div>
+                        <div class="card-body p-3">
+                            <ul class="list-group list-group-flush">
+                                {{ include('disponibilite/_form.html.twig') }}
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h1 class="text-primary">
+                                Votre disponibilité
+                            </h1>
+                        </div>
+                        <div class="card-body">
+                            <table class="table text-center">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Date</th>
+                                    <th>De</th>
+                                    <th>à</th>
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for disponibilite in disponibilites %}
+                                    <tr>
+                                        <td>{{ disponibilite.id }}</td>
+                                        <td>{{ disponibilite.date ? disponibilite.date|date('Y-m-d') : '' }}</td>
+                                        <td>{{ disponibilite.de ? disponibilite.de|date('H:i:s') : '' }}</td>
+                                        <td>{{ disponibilite.a ? disponibilite.a|date('H:i:s') : '' }}</td>
+                                        <td>
+
+                                            <a class="btn" href="{{ path('disponibilite_show', {'id': disponibilite.id}) }}"><i class="fas fa-eye"></i></a>
+                                            <a class="btn" href="{{ path('disponibilite_edit', {'id': disponibilite.id}) }}"><i class="fas fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="row gutters-sm">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h1 class="text-primary">
+                                        Mes demandes de guides
+                                    </h1>
+                                </div>
+                                <div class="card-body">
+                                    {% if is_granted('ROLE_GUIDE') %}
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>User</th>
+                                                <th>DateDebut</th>
+                                                <th>DateFin</th>
+                                                <th>Guidetouristique</th>
+                                                <th>actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for reservation_guide in reservation_guides %}
+                                                <tr>
+                                                    <td>{{ reservation_guide.id }}</td>
+                                                    <td>{{ reservation_guide.user }}</td>
+                                                    <td>{{ reservation_guide.dateDebut ? reservation_guide.dateDebut|date('Y-m-d') : '' }}</td>
+                                                    <td>{{ reservation_guide.dateFin ? reservation_guide.dateFin|date('Y-m-d') : '' }}</td>
+                                                    <td>{{ reservation_guide.guidetouristique }}</td>
+                                                    <td>
+                                                        <a href="{{ path('reservation_guide_show', {'id': reservation_guide.id}) }}">show</a>
+                                                        <a href="{{ path('reservation_guide_edit', {'id': reservation_guide.id}) }}">edit</a>
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="6">no records found</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                            {{ knp_pagination_render(reservation_guides) }}
+                                        </table>
+                                    {% else%}
+                                        <p>Vous n'etes pas un guide pour devenir un guide merci de remplir
+                                            <a href="/guide/new" class="text-info">ce formulaire.</a>
+                                        </p>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+
+
+
+
+
+   <!--  <h1>Create new Disponibilite</h1>
+
+
+    <a href="{{ path('disponibilite_index') }}">back to list</a>
+    -->
+
+
+{% endblock %}

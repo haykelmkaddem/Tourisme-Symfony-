@@ -1,0 +1,30 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}LieuEven{% endblock %}
+
+{% block body %}
+    <h1>LieuEven</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lieu_even.id }}</td>
+            </tr>
+            <tr>
+                <th>TitreLieu</th>
+                <td>{{ lieu_even.titreLieu }}</td>
+            </tr>
+            <tr>
+                <th>AddresseEven</th>
+                <td>{{ lieu_even.addresseEven }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('lieu_even_index') }}">back to list</a>
+
+    <a href="{{ path('lieu_even_edit', {'id': lieu_even.id}) }}">edit</a>
+
+    {{ include('lieu_even/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit PropMaison{% endblock %}
+
+{% block body %}
+    <h1>Edit PropMaison</h1>
+
+    {{ include('prop_maison/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('prop_maison_index') }}">back to list</a>
+
+    {{ include('prop_maison/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}EvenNonApprouve{% endblock %}
+
+{% block body %}
+    <h1>EvenNonApprouve</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ even_non_approuve.id }}</td>
+            </tr>
+            <tr>
+                <th>ImageFilename</th>
+                <td>{{ even_non_approuve.imageFilename }}</td>
+            </tr>
+            <tr>
+                <th>TitreEven</th>
+                <td>{{ even_non_approuve.titreEven }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionEven</th>
+                <td>{{ even_non_approuve.descriptionEven }}</td>
+            </tr>
+            <tr>
+                <th>DateDebutEven</th>
+                <td>{{ even_non_approuve.dateDebutEven ? even_non_approuve.dateDebutEven|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateFinEven</th>
+                <td>{{ even_non_approuve.dateFinEven ? even_non_approuve.dateFinEven|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeureDebutEven</th>
+                <td>{{ even_non_approuve.heureDebutEven ? even_non_approuve.heureDebutEven|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeureFinEven</th>
+                <td>{{ even_non_approuve.heureFinEven ? even_non_approuve.heureFinEven|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IdClient</th>
+                <td>{{ even_non_approuve.idClient }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

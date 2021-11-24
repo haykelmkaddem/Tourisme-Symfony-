@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+{{ form_row(form.titreCat,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+{{ form_row(form.descriptionCat,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+<br><br>
+<button class="btn btn-secondary" style="margin-left: 800px;">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

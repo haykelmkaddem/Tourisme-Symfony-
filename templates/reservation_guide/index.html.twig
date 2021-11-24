@@ -1,0 +1,53 @@
+{% extends 'basefrontJulia.html.twig' %}
+
+{% block title %}ReservationGuide index{% endblock %}
+
+{% block body %}
+    <h1>ReservationGuide index</h1>
+    {% for message in app.flashes('message') %}
+        <div style="background-color: #1b9448;color: #ffffff; text-align: center" class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <form method="post" action="{{ path('reservation_guide_trier') }}">
+        <select name="choix">
+            <option value="dateDebut">Date début</option>
+            <option value="dateFin">Date fin</option>
+        </select>
+        <input type="submit" value="Valider">
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>User</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>Guidetouristique</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation_guide in reservation_guides %}
+            <tr>
+                <td>{{ reservation_guide.id }}</td>
+                <td>{{ reservation_guide.user }}</td>
+                <td>{{ reservation_guide.dateDebut ? reservation_guide.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation_guide.dateFin ? reservation_guide.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation_guide.guidetouristique }}</td>
+                <td>
+                    <a href="{{ path('reservation_guide_show', {'id': reservation_guide.id}) }}">show</a>
+                    <a href="{{ path('reservation_guide_edit', {'id': reservation_guide.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        {{ knp_pagination_render(reservation_guides) }}
+    </table>
+
+    <a href="{{ path('reservation_guide_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}CategorieArt index{% endblock %}
+
+{% block body %}
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Categories des artistes</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+
+                <th>TitreCatArt</th>
+                <th>DescriptionCatArt</th>
+                    <th>Visualiser</th>
+                    <th>Modifier</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+
+                <th>TitreCatArt</th>
+                <th>DescriptionCatArt</th>
+                <th>Visualiser</th>
+                <th>Modifier</th>
+            </tr>
+        </tfoot>
+        <tbody>
+        {% for categorie_art in categorie_arts %}
+            <tr>
+
+                <td>{{ categorie_art.titreCatArt }}</td>
+                <td>{{ categorie_art.descriptionCatArt }}</td>
+                <td>
+                    <a href="{{ path('categorie_art_show', {'id': categorie_art.id}) }}" class="btn btn-primary btn-md" style="margin-left: 10px;">
+                        <i class="fas fa-eye" style="width: 40px;"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('categorie_art_edit', {'id': categorie_art.id}) }}" class="btn btn-success btn-md" style="margin-left: 10px;">
+                        <i class="fas fa-edit" style="width: 40px;"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

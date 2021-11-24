@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur index{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="h3 mb-2 text-gray-800">Liste D'utilisateurs</h1>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Telephone</th>
+                            <th>Roles</th>
+                            <th>Naissance</th>
+                            <th>Pays</th>
+                            <th>Etat</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Telephone</th>
+                            <th>Roles</th>
+                            <th>Naissance</th>
+                            <th>Pays</th>
+                            <th>Etat</th>
+                            <th>actions</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for utilisateur in utilisateurs %}
+                            <tr>
+                                <td>{{ utilisateur.id }}</td>
+                                <td>{{ utilisateur.nom }}</td>
+                                <td>{{ utilisateur.prenom }}</td>
+                                <td>{{ utilisateur.email }}</td>
+                                <td>{{ utilisateur.numtel }}</td>
+                                <td>
+                                    {% for role in utilisateur.roles  %}
+                                    {% if role == "ROLE_ADMIN" %}
+                                        Administrateur,
+                                    {% elseif role == "ROLE_GUIDE" %}
+                                        Guide touristique,
+                                    {% elseif role == "ROLE_PROP" %}
+                                        Proprietaire de maison,
+                                    {% elseif role == "ROLE_USER" %}
+                                        Membre
+
+                                    {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ utilisateur.datenaissance ? utilisateur.datenaissance|date('Y-m-d') : '' }}</td>
+                                <td>{{ utilisateur.pays }}</td>
+                                <td>{{ utilisateur.isVerified ? 'Verifié' : 'Non verifié' }}</td>
+                                <td>
+                                    <a href="{{ path('dashboard_utilisateur_show', {'id': utilisateur.id}) }}">show</a>
+                                    <a href="{{ path('dashboard_utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="12">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ path('utilisateur_new') }}">Create new</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+

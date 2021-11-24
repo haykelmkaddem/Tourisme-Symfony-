@@ -1,0 +1,68 @@
+
+<div class="container">
+    {{ form_start(form) }}
+    <div class="row">
+
+
+        <div class="form-group">
+
+            <table>
+                <tr class="spaceUnder">
+                    <td>Nom :</td><td>{{ form_widget(form.nom,{'attr': {'class': 'form-control',}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Num Telephone :</td><td>{{ form_widget(form.phone,{'attr': {'class': 'form-control',}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Email </td><td>{{ form_widget(form.email,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Type de location</td><td>{{ form_widget(form.TPmaison,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Lieu</td><td>{{ form_widget(form.LieuMaison,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Adresse</td><td>{{ form_widget(form.adresse,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Nombre de chambres à coucher :</td><td>{{ form_widget(form.Bedrooms,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Nombre de salles de bain :</td><td>{{ form_widget(form.bathrooms,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Nombre maximum de personnes :</td><td>{{ form_widget(form.maxppl,{'attr': {'class': 'form-control',}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Le fumer est : </td><td>{{ form_widget(form.smoke,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>il y a t il un piscine ? </td><td>{{ form_widget(form.piscine,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>L'aporter des animaux est : </td><td>{{ form_widget(form.pet,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Check IN : </td><td>{{ form_widget(form.check_in,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Check OUT : </td><td>{{ form_widget(form.check_out,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Prix </td><td>{{ form_widget(form.prix,{'attr': {'class': 'form-control'}}) }}</td><td> par : </td><td>{{ form_widget(form.nsm,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>Description : </td><td>{{ form_widget(form.description,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td>insérer une image : </td><td>{{ form_widget(form.image1,{'attr': {'class': 'form-control'}}) }}</td>
+                </tr>
+            </table>
+            <button class="btn" style="margin-left: 180px; width: 200px">{{ button_label|default('Valider',{'attr': {'class': 'form-control'}}) }}</button>
+
+        </div></div>
+    {{ form_end(form) }}
+</div>
+
+

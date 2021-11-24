@@ -1,0 +1,157 @@
+
+{% extends 'front.html.twig' %}
+
+{% block title %}Modifier Disponibilite{% endblock %}
+
+
+ {% block style %}
+     <style>
+         body.homepage #header {
+             height: 50px;
+             min-height: 50px;
+         }
+     </style>
+ {% endblock %}
+{% block header %}
+    <!-- Header -->
+    <div id="header">
+
+        <!-- Inner -->
+        <div class="inner">
+            <header>
+
+            </header>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="/">Acceuil</a></li>
+                <li><a href="/guides">Guides</a></li>
+                <li><a href="left-sidebar.html">Hébergements</a></li>
+                <li><a href="right-sidebar.html">Evenements</a></li>
+
+
+                {% if is_granted('ROLE_USER') %}
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/utilisateur/{{ app.user.id }}">Profile</a></li>
+                            {% if is_granted('ROLE_GUIDE') %}
+                                <li><a class="dropdown-item" href="/disponibilite">Disponibilité</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="/guide/new">Devenir Guide</a></li>
+                            {% endif %}
+
+                            <li><a class="dropdown-item" href="#">Devenir Prop Maison</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="/login">Login <i class="fas fa-sign-in-alt"></i></a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <div class="main-body mt-5 mb-5">
+
+            <!-- Breadcrumb -->
+
+            <!-- /Breadcrumb -->
+
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="{{ asset('uploads/') }}{{ app.user.image }}" alt="Admin" class="rounded-circle" width="150">
+                                <div class="mt-3 ">
+                                    <h4>{{ app.user.nom }} {{ app.user.prenom }}</h4>
+                                    <p class="text-secondary mb-1 text-center">
+                                        {% for role in app.user.roles  %}
+                                            {% if role == "ROLE_ADMIN" %}
+                                                Administrateur,
+                                            {% elseif role == "ROLE_GUIDE" %}
+                                                Guide touristique,
+                                            {% elseif role == "ROLE_USER" %}
+                                                Membre
+
+                                            {% endif %}
+                                        {% endfor %}</p>
+                                    <p class="text-muted font-size-sm text-center">{{ app.user.pays }}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h1 class="text-primary">
+                                Votre disponibilité
+                                <div class="float-right">
+                                    <form method="post" action="{{ path('disponibilite_delete', {'id': disponibilite.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ disponibilite.id) }}">
+                                        <button class="text-danger" title="supprimer" style="padding: 0px; background: none;margin: 0px;"> <i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </div>
+                            </h1>
+
+                        </div>
+                        <div class="card-body">
+
+
+                            {{ form_start(form) }}
+
+                            <table>
+                                <tr>
+                                    <td>{{ form_row(form.date) }}</td>
+                                    <td>{{ form_row(form.de) }}</td>
+                                    <td>  {{ form_row(form.a) }}</td>
+                                </tr>
+                            </table>
+                            <button class="btn btn-primary w-100">{{ button_label|default('Enregistrer') }}</button>
+                            {{ form_end(form) }}
+                            <br>
+
+                            <a href="{{ path('disponibilite_new') }}"><h1><i class="fas fa-arrow-left"></i> &nbsp Retour à la liste</h1></a>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+
+
+
+
+
+    <!--  <h1>Create new Disponibilite</h1>
+
+
+    <a href="{{ path('disponibilite_index') }}">back to list</a>
+    -->
+
+
+{% endblock %}

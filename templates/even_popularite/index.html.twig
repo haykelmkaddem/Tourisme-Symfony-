@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<title>EvenPopularite index</title>
+
+{% block body %}
+    <h1>EvenPopularite index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Participants</th>
+                <th>PeutEtre</th>
+                <th>No</th>
+                <th>IdEven</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for even_popularite in even_popularites %}
+            <tr>
+                <td>{{ even_popularite.id }}</td>
+                <td>{{ even_popularite.participants }}</td>
+                <td>{{ even_popularite.peutEtre }}</td>
+                <td>{{ even_popularite.no }}</td>
+                <td>{{ even_popularite.idEven }}</td>
+                <td>
+                    <a href="{{ path('even_popularite_show', {'id': even_popularite.id}) }}">show</a>
+                    <a href="{{ path('even_popularite_edit', {'id': even_popularite.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('even_popularite_new') }}">Create new</a>
+{% endblock %}

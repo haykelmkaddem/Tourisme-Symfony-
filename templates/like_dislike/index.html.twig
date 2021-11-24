@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LikeDislike index{% endblock %}
+
+{% block body %}
+    <h1>LikeDislike index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Aime</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for like_dislike in like_dislikes %}
+            <tr>
+                <td>{{ like_dislike.id }}</td>
+                <td>{{ like_dislike.aime ? 'Yes' : 'No' }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Maison{% endblock %}
+
+{% block body %}
+    <div class="right" style="margin-top: 10px; margin-left: 60px">
+        <a href="{{ path('maison_index') }}"> <button class="btn btn-light" type="submit" style="width: auto"><i class="fa fa-arrow-left" aria-hidden="true"></i>RETOUR</button></a>
+    </div>
+    <h1>Create new Maison</h1>
+
+    {{ include('maison/_form.html.twig') }}
+
+{% endblock %}

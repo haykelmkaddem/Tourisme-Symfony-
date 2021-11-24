@@ -1,0 +1,16 @@
+{% extends 'baseBACK.html.twig' %}
+
+{% block title %}Edit TPmaison{% endblock %}
+
+{% block body %}
+    <div class="right" style="margin-top: 10px; margin-left: 60px">
+        <a href="{{ path('t_pmaison_index') }}"> <button class="btn btn-light" type="submit" style="width: auto"><i class="fa fa-arrow-left" aria-hidden="true"></i>RETOUR</button></a>
+    </div>
+    <h1>Edit TPmaison</h1>
+
+    {{ include('t_pmaison/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+
+    {{ include('t_pmaison/_delete_form.html.twig') }}
+{% endblock %}

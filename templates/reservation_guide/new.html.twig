@@ -1,0 +1,17 @@
+{% extends 'basefrontJulia.html.twig' %}
+
+{% block title %}New ReservationGuide{% endblock %}
+
+{% block body %}
+    <h1>Create new ReservationGuide</h1>
+    {% for message in app.flashes('warning') %}
+        <div style="background-color: #cc2255;color: #ffffff; text-align: center" class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+    {{ include('reservation_guide/_form.html.twig') }}
+
+    <a href="{{ path('reservation_guide_index') }}">back to list</a>
+{% endblock %}

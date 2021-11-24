@@ -1,0 +1,6 @@
+services:
+  recaptcha.type:
+    class: Itfirst\RecaptchaBundle\Type\RecaptchaSubmitType
+    tags: ['form.type']
+    arguments:
+      $key: '6LfQ_nYaAAAAALYQZ3PQFvOro-KkzrNbLDi78xP6'

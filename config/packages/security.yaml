@@ -1,0 +1,67 @@
+security:
+    encoders:
+        App\Entity\Utilisateur:
+            algorithm: auto
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\Utilisateur
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: lazy
+            provider: app_user_provider
+            guard:
+                authenticators:
+                    - App\Security\UtilisateurAuthAuthenticator
+                    - App\Security\FacebookAuthenticator
+                entry_point: App\Security\UtilisateurAuthAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+      - { path: ^/even/non/approuve/new, roles: ROLE_USER }
+      - { path: ^/even/non/approuve/front, roles: ROLE_USER }
+      - { path: ^/even/non/approuve/detail, roles: ROLE_USER }
+      - { path: ^/even/approuve/detail, roles: ROLE_USER }
+      - { path: ^/even/approuve/listeEvent, roles: ROLE_USER }
+      - { path: ^/even/approuve/meilleurPlan, roles: ROLE_USER }
+      - { path: ^/even/approuve/searchajax, roles: ROLE_USER }
+      - { path: ^/even/approuve/aEviter, roles: ROLE_USER }
+      - { path: ^/even/approuve/participant, roles: ROLE_USER }
+      - { path: ^/even/approuve/peuEtre, roles: ROLE_USER }
+      - { path: ^/even/approuve/no, roles: ROLE_USER }
+      - { path: ^/even/approuve/evenLieu, roles: ROLE_USER }
+      - { path: ^/even/approuve/decroissant, roles: ROLE_USER }
+      - { path: ^/even/approuve/croissant, roles: ROLE_USER }
+      - { path: ^/even/approuve/decroissantHeure, roles: ROLE_USER }
+      - { path: ^/even/approuve/croissantHeure, roles: ROLE_USER }
+      - { path: ^/dashboard, roles: ROLE_ADMIN }
+      - { path: ^/artiste, roles: ROLE_ADMIN }
+      - { path: ^/categorie/art, roles: ROLE_ADMIN }
+      - { path: ^/categorie/even, roles: ROLE_ADMIN }
+      - { path: ^/lieu/even, roles: ROLE_ADMIN }
+      - { path: ^/maison/admin, roles: ROLE_ADMIN }
+      - { path: ^/even/non/approuve, roles: ROLE_ADMIN }
+      - { path: ^/even/approuve, roles: ROLE_ADMIN }
+      - { path: ^/even/approuve, roles: ROLE_ADMIN }
+      - { path: ^/login’, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+     #- { path: ^/, roles: ROLE_USER }
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER

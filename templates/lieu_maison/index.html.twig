@@ -1,0 +1,36 @@
+{% extends 'baseBACK.html.twig' %}
+
+{% block title %}LieuMaison index{% endblock %}
+
+{% block body %}
+    <h1>Lieux des Maisons</h1>
+{{ include('lieu_maison/_form.html.twig') }}
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lieu</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lieu_maison in lieu_maisons %}
+            <tr>
+                <td>{{ lieu_maison.id }}</td>
+                <td>{{ lieu_maison.lieu }}</td>
+                <td>
+                    <a href="{{ path('lieu_maison_show', {'id': lieu_maison.id}) }}">show</a>
+                    <a href="{{ path('lieu_maison_edit', {'id': lieu_maison.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

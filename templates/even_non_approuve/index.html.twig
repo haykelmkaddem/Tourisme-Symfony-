@@ -1,0 +1,70 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}EvenNonApprouve index{% endblock %}
+
+{% block body %}
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Evénements non approuvés</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+
+                <th>TitreEven</th>
+                <th>DescriptionEven</th>
+                <th>IdClient</th>
+                <th>Visualiser</th>
+                <th>Approuver</th>
+                <th>Refuser</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>TitreEven</th>
+                <th>DescriptionEven</th>
+                <th>IdClient</th>
+                <th>Visualiser</th>
+                <th>Approuver</th>
+                <th>Refuser</th>
+            </tr>
+        </tfoot>
+        <tbody>
+        {% for even_non_approuve in even_non_approuves %}
+            <tr>
+                <td>{{ even_non_approuve.titreEven }}</td>
+                <td>{{ even_non_approuve.descriptionEven }}</td>
+                <td>{{ even_non_approuve.idClient }}</td>
+                <td>
+                    <a href="{{ path('even_non_approuve_show', {'id': even_non_approuve.id}) }}" class="btn btn-primary btn-md" style="margin-left: 10px;">
+                        <i class="fas fa-eye" style="width: 40px;"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('even_non_approuve_approuver', {'id': even_non_approuve.id}) }}" class="btn btn-success btn-md" style="margin-left: 25px;">
+                        <i class="fas fa-thumbs-up"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('even_non_approuve_annuler', {'id': even_non_approuve.id}) }}" class="btn btn-danger btn-md" style="margin-left: 10px;">
+                        <i class="fas fa-minus-circle" style="width: 40px;"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

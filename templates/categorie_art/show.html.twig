@@ -1,0 +1,30 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}CategorieArt{% endblock %}
+
+{% block body %}
+    <h1>CategorieArt</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorie_art.id }}</td>
+            </tr>
+            <tr>
+                <th>TitreCatArt</th>
+                <td>{{ categorie_art.titreCatArt }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionCatArt</th>
+                <td>{{ categorie_art.descriptionCatArt }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('categorie_art_index') }}">back to list</a>
+
+    <a href="{{ path('categorie_art_edit', {'id': categorie_art.id}) }}">edit</a>
+
+    {{ include('categorie_art/_delete_form.html.twig') }}
+{% endblock %}

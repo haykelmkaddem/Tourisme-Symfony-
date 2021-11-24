@@ -1,0 +1,47 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}EvenApprouve{% endblock %}
+
+{% block body %}
+    <h1>EvenApprouve</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ even_approuve.id }}</td>
+            </tr>
+            <tr>
+                <th>TitreEven</th>
+                <td>{{ even_approuve.titreEven }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionEven</th>
+                <td>{{ even_approuve.descriptionEven }}</td>
+            </tr>
+            <tr>
+                <th>DateDebutEven</th>
+                <td>{{ even_approuve.dateDebutEven ? even_approuve.dateDebutEven|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateFinEven</th>
+                <td>{{ even_approuve.dateFinEven ? even_approuve.dateFinEven|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeureDebutEven</th>
+                <td>{{ even_approuve.heureDebutEven ? even_approuve.heureDebutEven|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeureFinEven</th>
+                <td>{{ even_approuve.heureFinEven ? even_approuve.heureFinEven|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+            <th>Image de l'even</th>
+            <img src="{{ asset('uploads/' ~ even_approuve.imageFilename) }}" style="margin-left: 20%;" class="img-fluid" width="20%" height="25%" alt="#">
+            </tr>
+        </tbody>
+    </table>
+
+
+    {{ include('even_approuve/_delete_form.html.twig') }}
+{% endblock %}

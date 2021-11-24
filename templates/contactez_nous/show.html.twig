@@ -1,0 +1,51 @@
+{% extends 'backSyrine.html.twig' %}
+
+{% block title %}ContactezNous{% endblock %}
+
+{% block body %}
+
+<div class="card m-5">
+    <div class="card-header py-3">
+        <h5 class="text-primary">
+            Message de {{ contactez_nou.nom }} {{ contactez_nou.prenom }}
+        </h5>
+    </div>
+    <div class="card-body">
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contactez_nou.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ contactez_nou.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ contactez_nou.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ contactez_nou.email }}</td>
+            </tr>
+            <tr>
+                <th>Objet</th>
+                <td>{{ contactez_nou.objet }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ contactez_nou.message }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('contactez_nous_index') }}">back to list</a>
+
+
+
+        {{ include('contactez_nous/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Edit Utilisateur{% endblock %}
+{% block style %}
+    <style>
+        body.homepage #header {
+            height: 50px;
+            min-height: 50px;
+        }
+        .bg-gradient-login{
+            position: relative;
+            background-image: url("{{ asset('front/images/header.jpg') }}");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+
+        }
+    </style>
+{% endblock %}
+{% block header %}
+    <!-- Header -->
+    <div id="header">
+
+        <!-- Inner -->
+        <div class="inner">
+            <header>
+
+            </header>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="/">Acceuil</a></li>
+                <li><a href="/guides">Guides</a></li>
+                <li><a href="left-sidebar.html">Hébergements</a></li>
+                <li><a href="right-sidebar.html">Evenements</a></li>
+
+
+                {% if is_granted('ROLE_USER') %}
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/utilisateur/{{ app.user.id }}">Profile</a></li>
+                            {% if is_granted('ROLE_GUIDE') %}
+                                <li><a class="dropdown-item" href="/disponibilite">Disponibilité</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="/guide/new">Devenir Guide</a></li>
+                            {% endif %}
+
+                            <li><a class="dropdown-item" href="#">Devenir Prop Maison</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="/login">Login <i class="fas fa-sign-in-alt"></i></a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+    </div>
+{% endblock %}
+{% block body %}
+
+
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-4 d-none d-lg-block bg-gradient-login " style="border-right: 1px solid #ccc">
+                                <a href="/utilisateur/{{ app.user.id }}" class="text-light"><i class="fas fa-arrow-left"></i></a><br>
+                                <img src="{{ asset('uploads/') }}{{ utilisateur.image }}" alt="Admin" class="rounded-circle" style="margin-left: 10%" width="80%">
+                                <br>
+
+                                <nav id="nav" style="margin-top:300px;">
+
+                                    <ul>
+                                        <li class="text-light">
+                                            CHANGER
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <br>
+
+                                    <a href="" class="btn btn-light" style="float: left; width: 80%">
+                                        Photo de profil
+                                    </a>
+                                    <br>
+                                    <br>
+                                    <a href="" class="btn btn-light" style="float: left; width: 75%">
+                                        Mot de passe
+                                    </a>
+                                </nav>
+                            </div>
+                            <div class="col-lg-8 p-5">
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                <button type="submit" class="btn btn-success w-100">modifier</button>
+                                {{ form_end(form) }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'backSyrine.html.twig' %}
+
+{% block title %}AvisEvenement index{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"> liste des avis des evenements</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Note</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Note</th>
+                            <th>actions</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for avis_evenement in avis_evenements %}
+                            <tr>
+                                <td>{{ avis_evenement.id }}</td>
+                                <td>{{ avis_evenement.note }}</td>
+                                <td>
+
+                                    <table class="text-center w-100">
+                                        <tr>
+                                            <td>
+                                                <a title="Cliquez ici pour afficher cet avis!" href="{{ path('avis_evenement_show', {'id': avis_evenement.id}) }}"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                            <td>
+                                                <a  title="Cliquez ici pour modifier cet avis!" href="{{ path('avis_evenement_edit', {'id': avis_evenement.id}) }}"><i class="fas fa-edit"></i></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="9">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="{{ path('avis_evenement_new') }}">Create new</a>
+{% endblock %}
+
+

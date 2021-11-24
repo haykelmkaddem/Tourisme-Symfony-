@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+
+{{ form_row(form.titreLieu,{'attr': {'class': 'form-control , col-md-12 form-group p_star' },'size': '5'})  }}
+{{ form_row(form.addresseEven,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+<br><br>
+<button class="btn btn-secondary" style="margin-left: 800px;">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

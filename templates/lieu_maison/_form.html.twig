@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+<div class="container">
+    <div class="row">
+
+
+        <div class="form-group">
+
+            <table>
+                <tr class="spaceUnder">
+                    <td>Lieu de Location : </td><td>{{ form_widget(form.lieu ,{'attr': {'class': 'form-control'}}) }}</td>
+                    <td><button class="btn" style="margin-left: -55px; width: 200px; margin-bottom: 10px;">{{ button_label|default('Ajouter') }}</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}
+
+

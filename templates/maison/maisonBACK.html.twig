@@ -1,0 +1,89 @@
+{% extends 'baseBACK.html.twig' %}
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Prix</th>
+                        <th>Nsm</th>
+                        <th>Adresse</th>
+                        <th>Check_in</th>
+                        <th>Check_out</th>
+                        <th>Piscine</th>
+                        <th>Bedrooms</th>
+                        <th>Bathrooms</th>
+                        <th>Maxppl</th>
+                        <th>Smoke</th>
+                        <th>Pet</th>
+                        <th>DateAjout</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Prix</th>
+                        <th>Nsm</th>
+                        <th>Adresse</th>
+                        <th>Check_in</th>
+                        <th>Check_out</th>
+                        <th>Piscine</th>
+                        <th>Bedrooms</th>
+                        <th>Bathrooms</th>
+                        <th>Maxppl</th>
+                        <th>Smoke</th>
+                        <th>Pet</th>
+                        <th>DateAjout</th>
+                        <th>actions</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for maison in maisons %}
+                        <tr>
+                            <td>{{ maison.id }}</td>
+                            <td>{{ maison.prix }}</td>
+                            <td>{{ maison.nsm }}</td>
+                            <td>{{ maison.adresse }}</td>
+                            <td>{{ maison.checkIn }}</td>
+                            <td>{{ maison.checkOut }}</td>
+                            <td>{{ maison.piscine }}</td>
+                            <td>{{ maison.Bedrooms }}</td>
+                            <td>{{ maison.bathrooms }}</td>
+                            <td>{{ maison.maxppl }}</td>
+                            <td>{{ maison.smoke }}</td>
+                            <td>{{ maison.pet }}</td>
+                            <td>{{ maison.dateAjout ? maison.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('maison_show_back', {'id': maison.id}) }}">show</a>
+
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="16">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

@@ -1,0 +1,14 @@
+{% for even_approuve in even_approuves %}
+    <a href="{{ path('detail', {'id':even_approuve.id}) }}" >
+        <div class="col-md-3 ">
+            <div class="card" style="width: 20rem; height: 28rem; margin-bottom: 20px">
+                <img src="{{ asset('uploads/' ~ even_approuve.imageFilename)}}" class="card-img-top" height="220" alt="#">
+                <div class="card-body">
+                    <h5 class="card-title">{{ even_approuve.titreEven }}</h5>
+                    <h6 class="card-title">{{ even_approuve.descriptionEven }} </h6>
+
+
+                </div>
+            </div>
+        </div></a>
+{% endfor %}

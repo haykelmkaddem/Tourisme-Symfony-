@@ -1,0 +1,67 @@
+{% extends 'base1Front.html.twig' %}
+
+{% block title %}Liste des événements approuve index{% endblock %}
+
+{% block body %}
+
+    <head>
+        <link rel="stylesheet" href="{{ asset('theme/css/style.css') }}" >
+    </head>
+<body>
+
+
+<br><br><br><br>
+<div class="container">
+    <div class="col-md-8">
+        <div class="product_list">
+
+
+            <div class="row">
+
+                {% for EvenLieu in EvenLieus %}
+                    <a href="#" >
+                        <div class="col-lg-3 col-sm-6 ">
+                            <div class="card" style="width: 10rem; height: 22rem; margin-bottom: 20px">
+                                <img src="{{ asset('uploads/' ~ EvenLieu.imageFilename) }}" class="card-img-top" height="220" alt="#">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ EvenLieu.titreEven }}</h5>
+                                    <h6 class="card-title">{{ EvenLieu.descriptionEven }} </h6>
+
+
+                                </div>
+                            </div>
+                        </div></a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- jquery plugins here-->
+
+    <script src="{{ asset('theme/js/jquery-1.12.1.min.js') }}"></script>
+    <!-- popper js -->
+    <script src="{{ asset('theme/js/popper.min.js') }}" ></script>
+    <!-- bootstrap js -->
+    <script src="{{ asset('theme/js/bootstrap.min.js') }}" ></script>
+    <!-- magnific popup js -->
+    <script src="{{ asset('theme/js/jquery.magnific-popup.js') }}" ></script>
+    <!-- carousel js -->
+    <script src="{{ asset('theme/js/owl.carousel.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.nice-select.min.js') }}" ></script>
+    <!-- slick js -->
+    <script src="{{ asset('theme/js/slick.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.counterup.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/waypoints.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/contact.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.ajaxchimp.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.form.js') }}" ></script>
+    <script src="{{ asset('theme/js/jquery.validate.min.js') }}" ></script>
+    <script src="{{ asset('theme/js/mail-script.js') }}" ></script>
+    <!-- custom js -->
+    <script src="{{ asset('theme/js/custom.js') }}" ></script>
+
+    <script src="{{ asset('theme/js/profile.js') }}" ></script>
+
+</body>
+{% endblock %}

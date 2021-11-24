@@ -1,0 +1,11 @@
+{% extends 'baseSyrine.html.twig' %}
+
+{% block title %}New AvisGuide{% endblock %}
+
+{% block body %}
+    <h1>Create new AvisGuide</h1>
+
+    {{ include('avis_guide/_form.html.twig') }}
+
+    <a href="{{ path('avis_guide_index') }}">back to list</a>
+{% endblock %}

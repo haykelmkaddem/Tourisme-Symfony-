@@ -1,0 +1,59 @@
+{{ form_start(form) }}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+{{ form_row(form.titreEven,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+        </div>
+        <div class="col-md-6">
+{{ form_row(form.descriptionEven,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+{{ form_row(form.dateDebutEven,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+        </div>
+        <div class="col-md-6">
+{{ form_row(form.dateFinEven,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+{{ form_row(form.heureDebutEven,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+        </div>
+        <div class="col-md-6">
+{{ form_row(form.heureFinEven,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+{{ form_row(form.CategorieEven,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+        </div>
+        <div class="col-md-6">
+{{ form_row(form.LieuEven,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-6">
+{{ form_row(form.Artiste,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+    </div>
+    <div class="col-md-6">
+{{ form_row(form.imageFilename,{'attr': {'class': 'form-control , col-md-12 form-group p_star'}})  }}
+    </div>
+</div>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+        <button class="btn btn-primary"  style="margin-left: 30px; margin-top: 30px; width: 120px;" >{{ button_label|default('Save') }}</button>
+    </div>
+</div>
+
+
+<br><br><br><br><br>
+
+</div>
+{{ form_end(form) }}

@@ -1,0 +1,32 @@
+{% extends 'baseSyrine.html.twig' %}
+
+{% block title %}New ContactezNous{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="container ">
+        <div class="card p-5 m-5">
+            <div class="row">
+
+                <div class="col-lg-8 ">
+                    <div id="map">
+                        <!-- Ici s'affichera la carte -->
+                    </div>
+                </div>
+                <div class="col-lg-4 ">
+                    <h3 class="text-primary"> Contactez-Nous </h3>
+                    {{ include('contactez_nous/_form.html.twig') }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <a href="{{ path('contactez_nous_index') }}">back to list</a>
+</div>
+{% endblock %}

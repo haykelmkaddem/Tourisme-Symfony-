@@ -1,0 +1,13 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Edit CategorieEven{% endblock %}
+
+{% block body %}
+    <h1>Edit CategorieEven</h1>
+
+    {{ include('categorie_even/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('categorie_even_index') }}">back to list</a>
+
+    {{ include('categorie_even/_delete_form.html.twig') }}
+{% endblock %}

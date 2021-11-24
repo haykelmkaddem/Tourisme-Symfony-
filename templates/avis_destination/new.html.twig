@@ -1,0 +1,11 @@
+{% extends 'baseSyrine.html.twig' %}
+
+{% block title %}New AvisDestination{% endblock %}
+
+{% block body %}
+    <h1>Create new AvisDestination</h1>
+
+    {{ include('avis_destination/_form.html.twig') }}
+
+    <a href="{{ path('avis_destination_index') }}">back to list</a>
+{% endblock %}
